@@ -35,15 +35,16 @@ router.get('/:id', async (req, res) => {
 // create new product
 // router.post('/', async (req, res) => {
 //   try {
-//     const bookData = await Product.create(
+//     const productData = await Product.create(
 //     {
 //       product_name: req.body.product_name,
 //       price: req.body.price,
 //       stock: req.body.stock,
 //       tagIds: req.body.tagIds,
 //     },
+    
 // )}
-//     // lots to refactor here, this is all callbacks
+    // lots to refactor here, this is all callbacks
 //   Product.create(req.body)
 //     .then((product) => {
 //       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
