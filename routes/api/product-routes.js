@@ -54,11 +54,12 @@ router.post('/', async (req, res) => {
           }; 
         }) 
         console.log(productData, productTagIDArr);
-        return ProductTag.bulkCreate(productTagIDArr);
-        res.status(200).json("success")
+        ProductTag.bulkCreate(productTagIDArr);
+        return res.status(200).json(productData)
       } else {
-        res.status(200).json("success");
+        return res.status(200).json("success");
       }
+      return res.status(200).json("success")
   });
 
 
@@ -105,8 +106,14 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
+  const deleteData = await Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
+  return res.json(deleteData);
 });
 
 module.exports = router;
