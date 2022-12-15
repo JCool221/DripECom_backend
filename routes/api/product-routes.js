@@ -33,39 +33,36 @@ router.get('/:id', async (req, res) => {
 });
 
 // create new product
-// router.post('/', async (req, res) => {
-//   try {
-//     const productData = await Product.create(
-//     {
-//       product_name: req.body.product_name,
-//       price: req.body.price,
-//       stock: req.body.stock,
-//       tagIds: req.body.tagIds,
-//     },
-    
-// )}
-    // lots to refactor here, this is all callbacks
-//   Product.create(req.body)
-//     .then((product) => {
-//       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-//       if (req.body.tagIds.length) {
-//         const productTagIdArr = req.body.tagIds.map((tag_id) => {
-//           return {
-//             product_id: product.id,
-//             tag_id,
-//           };
-//         });
-//         return ProductTag.bulkCreate(productTagIdArr);
-//       }
-//       // if no product tags, just respond
-//       res.status(200).json(product);
-//     })
-//     .then((productTagIds) => res.status(200).json(productTagIds))
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(400).json(err);
-//     });
-// });
+router.post('/', async (req, res) => {
+  const tagIds = await req.body.tagIds;
+    const productData = await Product.create(
+    {
+      product_name: req.body.product_name,
+      price: req.body.price,
+      stock: req.body.stock,
+      category_id: req.body.category_id,
+    },
+    )
+    console.log(productData);
+    console.log(tagIds);  
+      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+      if (req.body.tagIds.length) {
+        const productTagIDArr = tagIds.map(tag_id => {
+          return {
+            product_id: productData.id,
+            tag_id,
+          }; 
+        }) 
+        console.log(productData, productTagIDArr);
+        ProductTag.bulkCreate(productTagIDArr);
+        return res.status(200).json(productData)
+      } else {
+        return res.status(200).json("success");
+      }
+      return res.status(200).json("success")
+  });
+
+
 
 // update product
 router.put('/:id', (req, res) => {
@@ -109,8 +106,14 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
+  const deleteData = await Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
+  return res.json(deleteData);
 });
 
 module.exports = router;

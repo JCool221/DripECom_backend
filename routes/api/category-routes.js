@@ -47,6 +47,7 @@ router.put('/:id', async (req, res) => {
       id: req.params.id,
     }
   });
+  return res.json(categoryData);
 });
 
 router.delete('/:id', async (req, res) => {
