@@ -19,7 +19,7 @@ Npm -i will install all necessary dependencies
 
 <a name="Usage"></a>
 ## Usage
-Demonstration Video:
+Demonstration Video https://drive.google.com/file/d/1SiMMbNW3b1lMqLELG-93ktCQNjGK_2Rh/view
 
 
 Currently there is no frontend implemented for the store so usage requires Insomnia or Postman etc...
