@@ -25,14 +25,14 @@ Demonstration Video:
 Currently there is no frontend implemented for the store so usage requires Insomnia or Postman etc...
 routes are ./api/product, ./api/categories, and ./api/tags.  The api supports get for all or by id, POST to create a new entry, 
 PUT to update the existing entry, and DELETE which has the expected behavior.  
-Product creation follows this format:
-  {
-	"product_name": "",
-	"price" : ,
-	"stock" : ,
-	"tagIds" : [],
-	"category_id" : 
-}
+Product creation follows this format:     
+  {     
+	"product_name": "",    
+	"price" : ,    
+	"stock" : ,    
+	"tagIds" : [],     
+	"category_id" :    
+  }    
 
 <a name="Contributing"></a>
 ## Contributing
